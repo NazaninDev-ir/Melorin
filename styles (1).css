@@ -1,0 +1,176 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Melorin design system — cute, feminine pink + lilac stationery brand.
+ * All colors are oklch tokens. Never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-blush: var(--blush);
+  --color-lilac: var(--lilac);
+  --color-lilac-soft: var(--lilac-soft);
+  --color-petal: var(--petal);
+  --color-gold: var(--gold);
+  --font-sans: Vazirmatn, ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 1.25rem;
+  --background: oklch(0.99 0.008 340);
+  --foreground: oklch(0.32 0.06 330);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.32 0.06 330);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.32 0.06 330);
+  --primary: oklch(0.68 0.16 350);
+  --primary-foreground: oklch(0.99 0.005 340);
+  --secondary: oklch(0.72 0.13 305);
+  --secondary-foreground: oklch(0.99 0.005 340);
+  --muted: oklch(0.965 0.015 340);
+  --muted-foreground: oklch(0.55 0.05 330);
+  --accent: oklch(0.93 0.045 335);
+  --accent-foreground: oklch(0.36 0.08 330);
+  --destructive: oklch(0.6 0.2 20);
+  --destructive-foreground: oklch(0.99 0.005 340);
+  --border: oklch(0.92 0.028 335);
+  --input: oklch(0.92 0.028 335);
+  --ring: oklch(0.72 0.13 340);
+
+  --blush: oklch(0.955 0.025 350);
+  --petal: oklch(0.88 0.065 350);
+  --lilac: oklch(0.78 0.1 305);
+  --lilac-soft: oklch(0.955 0.025 310);
+  --gold: oklch(0.82 0.09 85);
+
+  --gradient-hero: linear-gradient(135deg, var(--blush) 0%, var(--lilac-soft) 55%, oklch(1 0 0) 100%);
+  --gradient-cta: linear-gradient(120deg, oklch(0.72 0.15 350) 0%, oklch(0.72 0.13 310) 100%);
+  --gradient-soft: linear-gradient(180deg, oklch(1 0 0) 0%, var(--blush) 100%);
+  --shadow-soft: 0 10px 30px -12px oklch(0.68 0.16 350 / 0.28);
+  --shadow-lift: 0 24px 50px -20px oklch(0.68 0.16 350 / 0.38);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3 {
+    line-height: 1.55;
+    font-weight: 800;
+  }
+
+  p {
+    line-height: 2;
+  }
+}
+
+@utility bg-hero-soft {
+  background-image: var(--gradient-hero);
+}
+
+@utility bg-cta-gradient {
+  background-image: var(--gradient-cta);
+}
+
+@utility bg-soft-fade {
+  background-image: var(--gradient-soft);
+}
+
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+@utility shadow-lift {
+  box-shadow: var(--shadow-lift);
+}
+
+@utility text-gradient-brand {
+  background-image: var(--gradient-cta);
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes melorin-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(6deg);
+  }
+}
+
+@keyframes melorin-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility animate-float {
+  animation: melorin-float 7s ease-in-out infinite;
+}
+
+@utility animate-rise {
+  animation: melorin-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@utility reveal-in {
+  opacity: 1;
+  transform: none;
+}
